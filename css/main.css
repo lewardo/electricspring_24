@@ -1,0 +1,17 @@
+:root {
+    width: 100vw;
+    min-height: 100vh;
+
+    position: fixed;
+    top: 0;
+    left: 0;
+}
+
+:root {
+    background-color: black;
+    background-image: url('/assets/wall.png'), url('/assets/wall_lowres.jpg');
+    background-position: top right;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+

@@ -1,0 +1,29 @@
+@font-face {
+    font-family: 'Venenosa';
+    src: url('/assets/venenosa.otf');
+}
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+
+    font-family: inherit;
+    font-weight: inherit;
+}
+
+:root {
+    font-size: 62.5%;
+    font-family: 'Venenosa', sans-serif;
+
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+:root {
+    --colour-red: #8f0000ff;
+    --colour-yellow: #fff106ff;
+}
