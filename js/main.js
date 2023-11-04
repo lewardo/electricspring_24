@@ -1,52 +1,76 @@
-$(document).ready(() => {
-    const container = $('#blocks');
-    const block = '<div class="blocks__block"></div>';
+const block_min = 8;
 
-    const N = 10;
+window.nav_open = false;
 
-    window.block_recalculate = () => {
-        const width = window.innerWidth;
-        const height = window.innerHeight;
-        
-        const block_fit = (n, w, h) => {
-            const r = w > h ? w * 1.0 / h : h * 1.0 / w;
-            return Math.round(n * r);
-        }
+window.block_recalculate = () => {
+    const width = window.innerWidth;
+    const height = window.innerHeight;
 
-        const block_count = n => n * block_fit(n, width, height);
+    const prev_dims = {
+        block_rows: window.block_rows,
+        block_cols: window.block_cols
+    }
+    
+    const block_fit = (n, w, h) => {
+        const r = w > h ? w * 1.0 / h : h * 1.0 / w;
+        return Math.round(n * r);
+    }
 
-        if (width > height) {
-            window.block_rows = N;
-            window.block_cols = block_fit(N, width, height);
-        } else {
-            window.block_rows = block_fit(N, width, height);
-            window.block_cols = N;
-        }
+    const block_count = n => n * block_fit(n, width, height);
 
-        container.append(new Array(block_count(N) + 1).join(block));
-        container.css({
-            '--block-width': `${width / window.block_cols}px`, 
-            '--block-height': `${height / window.block_rows}px`
+
+    if (width > height) {
+        window.block_rows = block_min;
+        window.block_cols = block_fit(block_min, width, height);
+    } else {
+        window.block_rows = block_fit(block_min, width, height);
+        window.block_cols = block_min;
+    }
+
+    if (prev_dims.block_rows != window.block_rows || prev_dims.block_cols != window.block_cols) {
+        $('#blocks').empty().append(new Array(block_count(block_min) + 1).join(
+            `<div class="overlay__block ${nav_open ? 'overlay__block--active' : ''}"></div>`
+        )).css({
+            '--block-rows': `${window.block_rows}`, 
+            '--block-cols': `${window.block_cols}`
         });
     }
+}
 
-    window.block_toggle = () => {
-        const blocks = $('#blocks > div').toArray();
-        const delay = 1000 / blocks.length;
-        const order = Array.from(Array(blocks.length).keys())
-                           .map(value => ({ value, sort: Math.random() }))
-                           .sort((a, b) => a.sort - b.sort)
-                           .map(({ value }) => value);
-        
-        order.forEach((n, i) => {
-            setTimeout(() => {
-                $(blocks[i]).toggleClass('blocks__block--hidden');
-            }, n * delay);
-        })
-    }
+window.block_toggle = () => {
+    const blocks = $('#blocks > div').toArray();
 
+    window.setTimeout(() => {
+        $('.overlay').css({
+            'display': nav_open ? 'block' : 'none'
+        });
+    }, nav_open ? 0 : 1000);
+
+    Array.from(Array(blocks.length).keys())
+         .map(value => ({ value, sort: Math.random() }))
+         .sort((a, b) => a.sort - b.sort)
+         .map(({ value }) => value)
+         .forEach((n, i) => { 
+            window.setTimeout(() => {
+                $(blocks[i]).toggleClass('overlay__block--active');
+            }, n * 1000 / blocks.length);
+        }
+    );
+
+    return new Promise(r => window.setTimeout(r, nav_open ? 1200 : 0));
+}
+
+window.menu_toggle = () => {
+}
+
+$(document).ready(() => {
     window.block_recalculate();
-    window.onresize = window.block_recalculate;
 
-    window.onclick = window.block_toggle;
+    window.onresize = block_recalculate;
+    window.onclick = () => {
+        nav_open = !nav_open;
+
+        if (nav_open) block_toggle().then(menu_toggle);
+        else menu_toggle().then(block_toggle);
+    }
 })
