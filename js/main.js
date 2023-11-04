@@ -61,6 +61,16 @@ window.block_toggle = () => {
 }
 
 window.menu_toggle = () => {
+    $('.overlay__img').css({
+        '--flicker-anim': nav_open ? 'flicker-reveal' : 'flicker-hide',
+    });
+
+    window.setTimeout(() => $('.overlay__img').css({
+        '--flicker-anim': '', 
+        'opacity': nav_open ? 1 : 0
+    }), 1000);
+
+    return new Promise(r => window.setTimeout(r, nav_open ? 0 : 1200));
 }
 
 $(document).ready(() => {
