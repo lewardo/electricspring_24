@@ -8,6 +8,10 @@
     display: none;
 }
 
+.overlay--visible {
+    display: block;
+}
+
 .overlay__blocks {
     position: fixed;
     top: 0;
@@ -20,13 +24,8 @@
     grid-template-columns: repeat(var(--block-cols), 1fr);
 }
 
-.overlay__block {
+.overlay--active {
     background: black;
-    opacity: 0;
-}
-
-.overlay__block--active {
-    opacity: 1;
 }
 
 .overlay__img {
@@ -37,17 +36,9 @@
     height: 80%;
 
     opacity: 0;
-    background-color: red;
+    background-color: white;
     animation: var(--flicker-anim) 1s linear forwards;
 }
-
-/* .overlay__img--visible {
-    animation: flicker-reveal 1s linear forwards;
-}
-
-.overlay__img--invisible {
-    animation: flicker-hide 1s linear forwards;
-} */
 
 .overlay__info {
     position: fixed;
