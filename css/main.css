@@ -9,9 +9,14 @@
 
 :root {
     background-color: black;
-    background-image: url('/assets/wall.png'), url('/assets/wall_lowres.jpg');
+    background-image: url('../assets/wall.png'), url('../assets/wall_lowres.jpg');
     background-position: top right;
     background-repeat: no-repeat;
     background-size: cover;
+}
+
+body {
+    width: 100%;
+    height: 100%;
 }
 

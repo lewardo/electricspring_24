@@ -1,6 +1,6 @@
 @font-face {
     font-family: 'Venenosa';
-    src: url('/assets/venenosa.otf');
+    src: url('../assets/venenosa.otf');
 }
 
 *,
@@ -24,6 +24,6 @@
 }
 
 :root {
-    --colour-red: #8f0000ff;
-    --colour-yellow: #fff106ff;
+    --colour-red: #8f0000;
+    --colour-yellow: #fff106;
 }
