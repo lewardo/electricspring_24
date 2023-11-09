@@ -4,7 +4,7 @@
     left: 0;
     z-index: 10;
     width: 100%;
-    height: calc(3 * (1rem + 1vmin));
+    height: calc(2 * (1rem + 2vmin));
     display: flex;
     justify-content: flex-end;
     align-items: center;

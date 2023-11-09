@@ -1,15 +1,27 @@
+@import './base.css';
+
+@import './animate.css';
+
+@import './header.css';
+@import './overlay.css';
+@import './footer.css';
+
 :root {
     width: 100vw;
     min-height: 100vh;
 
     position: fixed;
+    /* top: calc(25vh - 25vmax); */
     top: 0;
+    top: -5vw;
     left: 0;
 }
 
 :root {
     background-color: black;
-    background-image: url('../assets/wall.png'), url('../assets/wall_lowres.jpg');
+    background-image: 
+    /* url('../assets/img/wall_9_16.png'),  */
+    url('../assets/img/wall_9_16.jpg');
     background-position: top right;
     background-repeat: no-repeat;
     background-size: cover;
