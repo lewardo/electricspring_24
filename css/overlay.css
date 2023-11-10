@@ -85,9 +85,14 @@ img[src$="/"] {
     font-size: calc(2rem + 2vmin);
 }
 
-.overlay__name, .overlay__liner, .overlay__bio {
+.overlay__name, .overlay__liner {
     display: block;
     font-size: calc(1rem + 1vmin);
+}
+
+.overlay__bio {
+    display: block;
+    font-size: calc(0.8 * (1rem + 1vmin));
 }
 
 
