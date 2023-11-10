@@ -19,9 +19,7 @@
 
 :root {
     background-color: black;
-    background-image: 
-    /* url('../assets/img/wall_9_16.png'),  */
-    url('../assets/img/wall_9_16.jpg');
+    background-image: url('../assets/img/wall.png'), url('../assets/img/wall.jpg');
     background-position: top right;
     background-repeat: no-repeat;
     background-size: cover;
