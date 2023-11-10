@@ -44,13 +44,6 @@ $.fn.extend({
             next();
         });
     },
-
-    qglitch: function() {
-        return $(this).queue(function(next) { 
-            $(this).mgGlitch();
-            next();
-        });
-    },
     
     qthen: function(f) {
         return $(this).queue(function(next) {
